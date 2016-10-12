@@ -9,6 +9,19 @@ var path = require('path');
 
 module.exports = function (app) {
 
+    //CORS middleware
+    var allowCrossDomain = function(req, res, next) {
+        var allowedOrigins = ['http://localhost:9000', 'http://www.webosmotic.com'];
+        var origin = req.headers.origin;
+        if(allowedOrigins.indexOf(origin) > -1){
+            res.setHeader('Access-Control-Allow-Origin', origin);
+        }
+        res.header('Access-Control-Allow-Methods', 'OPTIONS,GET,PUT,POST,DELETE');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    };
+    app.use(allowCrossDomain);
+
     // Insert routes below
     app.use('/api/templates', require('./api/templates'));
     app.use('/api/users', require('./api/user'));
