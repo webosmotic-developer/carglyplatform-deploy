@@ -11,7 +11,7 @@ module.exports = function (app) {
 
     //CORS middleware
     var allowCrossDomain = function(req, res, next) {
-        var allowedOrigins = ['http://localhost:9000', 'http://www.webosmotic.com'];
+        var allowedOrigins = ['http://localhost:9000', 'http://webosmotic.com'];
         var origin = req.headers.origin;
         if(allowedOrigins.indexOf(origin) > -1){
             res.setHeader('Access-Control-Allow-Origin', origin);
